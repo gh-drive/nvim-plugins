@@ -1,0 +1,83 @@
+---
+name: mirror
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 15 * * *
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/CI.yml
+      - mirror.sh
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: git-mirror
+        env:
+          CODING_USER: ${{ secrets.CODING_USER }}
+          PAT: ${{ secrets.PAT }}
+        run: |
+          # built-in
+          bash mirror.sh folke/lazy.nvim
+          bash mirror.sh neovim/nvim-lspconfig
+          bash mirror.sh williamboman/mason-lspconfig.nvim
+          bash mirror.sh tamago324/nlsp-settings.nvim
+          bash mirror.sh nvimtools/none-ls.nvim
+          bash mirror.sh williamboman/mason.nvim
+          bash mirror.sh lunarvim/lunar.nvim
+          bash mirror.sh Tastyep/structlog.nvim
+          bash mirror.sh nvim-lua/plenary.nvim
+          bash mirror.sh nvim-telescope/telescope.nvim
+          bash mirror.sh nvim-telescope/telescope-fzf-native.nvim
+          bash mirror.sh hrsh7th/nvim-cmp
+          bash mirror.sh hrsh7th/cmp-nvim-lsp
+          bash mirror.sh saadparwaiz1/cmp_luasnip
+          bash mirror.sh hrsh7th/cmp-buffer
+          bash mirror.sh hrsh7th/cmp-path
+          bash mirror.sh hrsh7th/cmp-cmdline
+          bash mirror.sh L3MON4D3/LuaSnip
+          bash mirror.sh rafamadriz/friendly-snippets
+          bash mirror.sh folke/neodev.nvim
+          bash mirror.sh windwp/nvim-autopairs
+          bash mirror.sh nvim-treesitter/nvim-treesitter
+          bash mirror.sh JoosepAlviste/nvim-ts-context-commentstring
+          bash mirror.sh lewis6991/gitsigns.nvim
+          bash mirror.sh folke/which-key.nvim
+          bash mirror.sh numToStr/Comment.nvim
+          bash mirror.sh nvim-tree/nvim-web-devicons
+          bash mirror.sh nvim-lualine/lualine.nvim
+          bash mirror.sh SmiteshP/nvim-navic
+          bash mirror.sh akinsho/bufferline.nvim
+          bash mirror.sh goolord/alpha-nvim
+          bash mirror.sh akinsho/toggleterm.nvim
+          bash mirror.sh b0o/schemastore.nvim
+          bash mirror.sh RRethy/vim-illuminate
+          bash mirror.sh lukas-reineke/indent-blankline.nvim
+          bash mirror.sh lunarvim/bigfile.nvim
+
+          # cutsom
+          bash mirror.sh ethanholz/nvim-lastplace
+          bash mirror.sh folke/trouble.nvim
+          bash mirror.sh folke/todo-comments.nvim
+          bash mirror.sh folke/noice.nvim
+          bash mirror.sh MunifTanjim/nui.nvim
+          bash mirror.sh rcarriga/nvim-notify
+          bash mirror.sh smoka7/hop.nvim
+          bash mirror.sh nvim-neo-tree/neo-tree.nvim
+          bash mirror.sh ellisonleao/glow.nvim
+          bash mirror.sh nacro90/numb.nvim
+          bash mirror.sh andymass/vim-matchup
+          bash mirror.sh smoka7/multicursors.nvim
+          bash mirror.sh norcalli/nvim-colorizer.lua
+          bash mirror.sh nvimtools/hydra.nvim
+          bash mirror.sh hiphish/rainbow-delimiters.nvim
+          bash mirror.sh kylechui/nvim-surround
+          bash mirror.sh wakatime/vim-wakatime
+          bash mirror.sh shellRaining/hlchunk.nvim
+          bash mirror.sh zbirenbaum/copilot-cmp
+          bash mirror.sh zbirenbaum/copilot.lua
